@@ -1,0 +1,83 @@
+import './style.css'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger);
+
+const canvas = document.getElementById("hero-lightpass");
+const context = canvas.getContext("2d");
+
+const frameCount = 240;
+const base = import.meta.env.BASE_URL;
+const currentFrame = index => (
+  `${base}frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`
+);
+
+// Preload images
+const images = [];
+const preloadImages = () => {
+  for (let i = 1; i <= frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    images.push(img);
+  }
+};
+
+preloadImages();
+
+// Setup starting image dimensions
+const firstImage = new Image();
+firstImage.src = currentFrame(1);
+firstImage.onload = () => {
+  canvas.width = firstImage.width;
+  canvas.height = firstImage.height;
+  renderImage(0);
+};
+
+// Render function with load-handling
+const renderImage = (index) => {
+  const img = images[index];
+  if (img) {
+    if (img.complete && img.naturalWidth !== 0) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, 0, 0);
+    } else {
+      img.onload = () => {
+        if (Math.abs(animationObj.frame - index) < 10) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(img, 0, 0);
+        }
+      };
+    }
+  }
+};
+
+// GSAP Scroll Trigger for scrubbing canvas frames based on app scroll height
+const animationObj = { frame: 0 };
+gsap.to(animationObj, {
+  frame: frameCount - 1,
+  snap: "frame",
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#scroll-animation-section",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 0.1
+  },
+  onUpdate: () => {
+    renderImage(animationObj.frame);
+  }
+});
+
+// GSAP animation to fade out the heading and subheading text overlay at 30% scroll progress of the scroll section
+gsap.to("#scroll-text-overlay", {
+  opacity: 0,
+  ease: "power1.out",
+  scrollTrigger: {
+    trigger: "#scroll-animation-section",
+    start: "top top",
+    end: "30% top",
+    scrub: true
+  }
+});
+
