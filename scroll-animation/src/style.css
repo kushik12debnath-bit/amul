@@ -116,7 +116,7 @@ body {
 canvas {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   max-width: 100vw;
   max-height: 100vh;
   filter: drop-shadow(0 0 50px rgba(184, 0, 73, 0.2));
