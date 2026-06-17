@@ -105,4 +105,27 @@ if (menuToggle && mobileMenu) {
   });
 }
 
+// Contact Us Modal Toggle Logic
+const contactModal = document.getElementById("contact-modal");
+const contactUsLink = document.getElementById("contact-us-link");
+const closeContactModal = document.getElementById("close-contact-modal");
+
+if (contactModal && contactUsLink && closeContactModal) {
+  contactUsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    contactModal.classList.remove("hidden");
+  });
+
+  closeContactModal.addEventListener("click", () => {
+    contactModal.classList.add("hidden");
+  });
+
+  // Close modal when clicking outside the container backdrop
+  contactModal.addEventListener("click", (e) => {
+    if (e.target === contactModal) {
+      contactModal.classList.add("hidden");
+    }
+  });
+}
+
 
