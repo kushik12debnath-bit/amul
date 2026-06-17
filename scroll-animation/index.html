@@ -120,9 +120,22 @@
 <button class="hidden md:block font-label-lg uppercase text-[11px] tracking-widest text-black border-b border-black pb-1 hover:text-red-500 hover:border-red-500 transition-all duration-300">
             Buy Online
         </button>
-<button class="text-on-surface hover:text-primary transition-all duration-300">
+<button class="text-on-surface hover:text-primary transition-all duration-300 flex items-center">
 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'wght' 300;">shopping_bag</span>
 </button>
+<button id="mobile-menu-toggle" class="md:hidden text-on-surface hover:text-primary transition-all duration-300 flex items-center justify-center" aria-label="Toggle Menu">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'wght' 300;">more_vert</span>
+</button>
+</div>
+<!-- Mobile Menu Dropdown -->
+<div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md border-b border-black/[0.03] flex flex-col items-center py-8 gap-6 shadow-lg z-40">
+<a class="text-on-surface font-bold text-sm tracking-widest uppercase hover:text-primary transition-all duration-300" href="#">Home</a>
+<a class="text-on-surface-variant text-sm tracking-widest uppercase hover:text-primary transition-all duration-300" href="#benefits">Benefits</a>
+<a class="text-on-surface-variant text-sm tracking-widest uppercase hover:text-primary transition-all duration-300" href="#showcase">Showcase</a>
+<a class="text-on-surface-variant text-sm tracking-widest uppercase hover:text-primary transition-all duration-300" href="#">Heritage</a>
+<button class="w-[80%] py-4 bg-on-surface text-surface font-label-lg uppercase tracking-[0.2em] text-[11px] hover:bg-primary transition-all duration-300 mt-2">
+            Buy Online
+        </button>
 </div>
 </nav>
     <!-- Background glowing orbs (only for top scroll section) -->

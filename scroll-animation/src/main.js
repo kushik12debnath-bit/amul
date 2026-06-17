@@ -81,3 +81,28 @@ gsap.to("#scroll-text-overlay", {
   }
 });
 
+// Mobile Menu Toggle Event Handler
+const menuToggle = document.getElementById("mobile-menu-toggle");
+const mobileMenu = document.getElementById("mobile-menu");
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+    const icon = menuToggle.querySelector("span");
+    if (mobileMenu.classList.contains("hidden")) {
+      icon.textContent = "more_vert";
+    } else {
+      icon.textContent = "close";
+    }
+  });
+
+  // Close menu when a link or button is clicked
+  const menuLinks = mobileMenu.querySelectorAll("a, button");
+  menuLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      menuToggle.querySelector("span").textContent = "more_vert";
+    });
+  });
+}
+
+
